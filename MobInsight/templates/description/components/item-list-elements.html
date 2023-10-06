@@ -1,0 +1,23 @@
+{% for item in items %}
+<a class="text-decoration-none" href=""></a>
+    {% if forloop.last %}
+    <div class="card border-0 pb-3 pb-sm-5" hx-get="{% url 'homepage' %}" hx-trigger="revealed">
+    {% else %}
+    <div class="card border-0 pb-3 pb-sm-5">
+    {% endif %}
+        <div class="row d-flex align-items-stretch">
+            <div class="col-8">
+                <div class="card-body p-0">
+                    <h1 class="mb-1 fw-bold infscroll-title">{{item.name}}</h1>
+                    {% load humanize %}
+                    <h3 style="color: red;">₹{{ item.price|intcomma }}</h3>
+                    <p class="text-muted fs-6 d-none d-sm-block">{{item.comment|truncatechars:200}}</p>
+                </div>
+            </div>
+            <div class="col-4">
+                <img src="{{item.image}}" class="img-fluid float-end" alt="">
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
