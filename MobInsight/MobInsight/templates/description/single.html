@@ -39,7 +39,11 @@
                             <p class="text-muted fs-6 d-none d-sm-block">{{item.battery}}</p>
                         </div>
                     </div>
+                    {% if chart %}
+                    <img src="data:image/png;base64,{{chart|safe}}">
+                    {% endif %}
                     </div>
+                    
                     <div class="col-4">
                         <img src="{{item.image2}}" class="img-fluid float-end" alt="">
                     </div>
