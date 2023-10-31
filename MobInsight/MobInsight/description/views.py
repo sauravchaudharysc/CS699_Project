@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 from .models import Item
 from io import BytesIO
 import base64
+import pandas as pd
+import re
+
 # Create your views here.
 class HomeView(ListView):
     model = Item
@@ -32,30 +35,39 @@ def get_graph():
     buffer.close()
     return graph
 
-def get_plot():
-    fb = (120, 90, 110, 100, 95)
-    yt = (80, 90, 75, 85, 95)
-    ig = (50, 40, 55, 35, 45)
-    x = ['Performance', 'Display', 'Camera', 'Battery', 'Storage']
+def get_plot(item):
+    phone_scores = (120, 90, 110, 100)
+    avg_scores = (80, 90, 75, 85)
+    phones = Item.objects.all()
+    db_lst = []
+    for phone in phones:
+        temp_lst = []
+        temp_lst.append(phone.name)
+        temp_lst.append(phone.performance)
+        temp_lst.append(phone.display)
+        temp_lst.append(phone.battery)
+        temp_lst.append(phone.camera)
+        db_lst.append(temp_lst)
+    
+    x = ['Performance', 'Display', 'Camera', 'Battery']
     xpos = np.arange(len(x))
     barWidth = 0.4
     plt.switch_backend('AGG')
-    plt.figure(figsize=(7,5))
-    plt.bar(xpos, fb, color='royalblue', width= barWidth, label='FB')
-    plt.bar(xpos, yt, bottom=fb, color='red', width= barWidth, label='YT')
-    plt.bar(xpos, ig, bottom=yt, color='purple', width= barWidth, label='IG')
+    plt.figure(figsize=(9, 5))
+    plt.bar(xpos, phone_scores, color='royalblue', width= barWidth, label=item+' Scores')
+    plt.bar(xpos, avg_scores, bottom=avg_scores, color='red', width= barWidth, label='Average')
     plt.xlabel('Specification')
     plt.ylabel('Rating')
     plt.title('Comparison')
     plt.xticks(xpos, x)
-    plt.legend()
+    plt.legend(loc='best')
     graph = get_graph()
     return graph
 
 
 def item_single(request, item):
     item = get_object_or_404(Item, name=item)
-    chart = get_plot()
+    chart = get_plot(item.name)
     return render(request, "description/single.html",{"item":item, "chart": chart})
 
 def get_names(request):
