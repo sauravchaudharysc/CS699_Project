@@ -15,7 +15,7 @@
     <div class="row">
         <div class="card border-0 pb-3 pb-sm-5">
                 <div class="row d-flex align-items-stretch">
-                    <div class="col-8 ml-5">
+                    <div class="col-8 ml-5 d-sm-flex flex-column">
                         <div class="card-body p-0">
                             {% load humanize %}
                             <p class="text-muted fs-5 d-none d-sm-block">{{item.comment}}</p>
@@ -25,22 +25,22 @@
                         <div class="col-4 text-center">
                             <h4>Performance</h4>
                             <i class="fa fa-solid fa-bolt fs-1 fs-sm-3"></i>
-                            <p class="text-muted fs-6 d-none d-sm-block">{{item.performance}}</p>
+                            <p class="text-muted fs-6 d-sm-block">{{item.performance}}</p>
                            
                         </div>
                         <div class="col-4 text-center">
                             <h4>Camera</h4>
                             <i class="fa fa-solid fa-camera fs-1 fs-sm-3"></i>
-                            <p class="text-muted fs-6 d-none d-sm-block">{{item.camera}}</p>
+                            <p class="text-muted fs-6 d-sm-block">{{item.camera}}</p>
                         </div>
                         <div class="col-4 text-center">
                             <h4>Battery</h4>
                             <i class="fa fa-solid fa-battery-full fs-1 fs-sm-3"></i>
-                            <p class="text-muted fs-6 d-none d-sm-block">{{item.battery}}</p>
+                            <p class="text-muted fs-6 d-sm-block">{{item.battery}}</p>
                         </div>
                     </div>
                     {% if chart %}
-                    <img src="data:image/png;base64,{{chart|safe}}">
+                    <img src="data:image/png;base64,{{chart|safe}}" class="img-fluid float-end">
                     {% endif %}
                     </div>
                     

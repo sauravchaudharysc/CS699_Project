@@ -193,15 +193,15 @@ def get_plot(item):
     print(avg_scores)
     x = ['Performance', 'Display', 'Camera', 'Battery']
     xpos = np.arange(len(x))
-    barWidth = 0.4
+    barWidth = 0.3
     plt.switch_backend('AGG')
     plt.figure(figsize=(9, 5))
-    plt.bar(xpos, phone_scores, color='royalblue', width= barWidth, label=item+' Scores')
-    plt.bar(xpos, avg_scores, color='red', width= barWidth, label='Average')
+    plt.bar(xpos, avg_scores, color='white',edgecolor="green", hatch='/',width= barWidth, label='Average',)
+    plt.bar(xpos+0.3, phone_scores, color='white', width= barWidth, edgecolor="red" ,hatch='.',label=item+' Scores')
     plt.xlabel('Specification')
     plt.ylabel('Rating')
     plt.title('Comparison')
-    plt.xticks(xpos, x)
+    plt.xticks(xpos+0.15, x)
     plt.legend(loc='best')
     graph = get_graph()
     return graph
