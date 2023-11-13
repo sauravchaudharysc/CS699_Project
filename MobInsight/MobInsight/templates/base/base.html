@@ -10,6 +10,7 @@
     <link rel="stylesheet", href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="https://unpkg.com/@trevoreyre/autocomplete-js/dist/style.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
 
@@ -36,7 +37,12 @@
                 },
                 renderResult: (result, props) => {
                 console.log(props)
-        
+                $(props.id).keypress(function (e) {
+                  var key = e.which;
+                  if (key == 13) {
+                    console.log(result.name);
+                  }
+                });
                 let group = ''
                 if (result.index % 3 === 0) {
                     group = `<li class="group">Group</li>`
@@ -44,7 +50,6 @@
                 const baseUrl = "http://127.0.0.1:8000/";
                   const deviceName = result.name;
                   const encodedDeviceName = encodeURIComponent(deviceName);
-
                   const finalUrl = baseUrl + encodedDeviceName + "/";
                 return `
                 ${group}
@@ -58,7 +63,8 @@
                 </a>
               `
                 }
-                  })
+                  });
+              
     </script>
   </body>
 </html>

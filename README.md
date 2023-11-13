@@ -35,4 +35,4 @@ The Mobile Device Information Web Application is an innovative solution designed
 1. Clone the repository:
 
    ```shell
-   git clone https://github.com/your-repo-url.git
+   git clone https://github.com/sauravchaudharysc/CS699_Project.git
