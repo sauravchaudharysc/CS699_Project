@@ -36,3 +36,19 @@ The Mobile Device Information Web Application is an innovative solution designed
 
    ```shell
    git clone https://github.com/sauravchaudharysc/CS699_Project.git
+   
+2. Navigate to the MobInsight folder:
+
+   ```shell
+   cd CS699_Project/MobInsight
+
+3. Run the following command to install dependencies and set up the environment:
+   
+   ```shell
+   make
+
+4. Once the dependencies are installed and the environment is set up, run the following command to start the server:
+   
+   ```shell
+   make runserver
+
